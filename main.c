@@ -25,6 +25,7 @@ while (op)
       scanf("%d",&key);
       printf("1 %d\n",key);
       STinsert(key);
+      int subtree = return_subtree();
       break;
     case 2:
       scanf("%d",&key);
@@ -35,6 +36,7 @@ while (op)
           i++;
           tombstone = realloc(tombstone, i * sizeof(int));
           tombstone[i - 1] = rank;
+          tombstone[i - 1] = key(STselect(rank));
       }
 
       int j = 0;
@@ -43,6 +45,9 @@ while (op)
           printf("%d \n", tombstone[j]);
           j++;
       }
+
+      live = return_live(tombstone, i, subtree);
+      //rearrange(tombstone, i);
     //  STdelete(key);
       break;
     case 3:
@@ -60,25 +65,26 @@ while (op)
       printf("4 %d\n",rank);
       if (rank<1 || rank>getLive(i))
         printf("rank %d range error\n",rank);
-      else if (rank != 0 || rank <= getLive(i))
-      {
-          int a = 0;
-          for(a = 0; a < i; a++)
-          {
-              if (tombstone[a] == rank)
-              {
-                  printf("The number with rank %d has been tombstoned! \n", rank);
-                  a = 0;
-                  break;
-              }
-          }
+    //  else if (rank != 0 || rank <= getLive(i))
+    //  {
+    //      int a = 0;
+   //       for(a = 0; a < i; a++)
+   //       {
+    //          if (tombstone[a] == rank)
+   //           {
+   //               printf("The number with rank %d has been tombstoned! \n", rank);
+   //               a = 0;
+   //               break;
+   //           }
+   //       }
 
-          if(a)
-              {
-                  printf("rank %d has key %d\n",rank,key(STselect(rank)));
-                  break;
-              }
-      }
+          //if(a)
+        else
+            {
+                printf("rank %d has key %d\n",rank,key(STselect(rank)));
+                //break;
+            }
+      //}
 
       break;
    // case 5:

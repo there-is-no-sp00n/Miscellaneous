@@ -452,6 +452,150 @@ int getDead(int i)
     return i;
 }
 
+void rearrange(int * tomb, int i)
+{
+    link temp = head;
+    //int tomb_size = sizeof(tomb)/4;
+    //printf("T Size: %d    Value %d\n", i, tomb[0]);
+    //int rank_temp = STselect()
+    int a,b;
+
+    for (a = 0; a < i; a++)
+    {
+        int key_temp = selectR(temp, tomb[a]);    //have the key here from the rank of tombstone element
+        //rank_temp = invSelectR(temp,rank_temp);
+        //for
+
+    }
+
+    //Item item = head->item;
+    //head = RBinsert(head, item, 0, 0, NULL);
+    //if (head->red)
+  //printf("red to black reset has occurred at root!!!\n");
+//head->red = 0;
+}
+
+int * return_live(int * tomb, int i, int tree)
+{
+    int total = head->N;
+    int *temp = (int*)calloc(total, sizeof(int)); //create the array to be filled up with ranks first, then the keys
+
+    int a,b;
+
+    for (a = 0; a < total; a++) //all the values go into the temp
+    {
+        //printf("Element \n");
+        int temp_1 = temp[a];
+        temp[a] = key(STselect(a+1));
+    }
+
+    for (a = 0; a < total; a ++)
+    {
+        printf("Element1 #%d is %d \n", a+1, temp[a]);
+    }
+
+    printf("\n after filling up temp \n");
+
+   // return 1;
+
+    for(a = 0; a < total; a++)
+    {
+        for(b = 0; b < i; b++)
+        {
+            if(tomb[b] == temp[a])
+            {
+               temp[a] = 0;
+               break;
+                //if(b+1 == i)
+                //{
+                //    temp[a] = a+1;
+                //}
+            }
+
+        }
+    }
+
+    for (a = 0; a < total; a ++)
+    {
+        printf("Element2 #%d is %d \n", a+1, temp[a]);
+    }
+
+    printf("\n after deciding which ones to delete \n");
+
+    for (a = 0; a < total; a++)  //sort it
+    {
+        for (b = 0; b < total - a; b++)
+        {
+            if (temp[b] < temp[b+1])
+            {
+                int temp_a = temp[b+1];
+                temp[b+1] = temp[b];
+                temp[b] = temp_a;
+            }
+
+        }
+
+    }
+
+    printf("\n after reverse sorting \n");
+
+    //printf("TOTAL #%d  I %d  TREE %d\n", total, i, tree);
+
+    temp = realloc(temp, (total - 1) * sizeof(int)); //make the array the right size
+
+    b = 0;
+  //  while(temp[b] != 0)
+  //  {
+
+  //  }
+
+    for (a = 0; a < total-1; a ++)
+    {
+        printf("Element3 #%d is %d \n", a+1, temp[a]);
+    }
+
+    printf("\n after reallocating \n");
+
+    //return 1;
+
+    //for (a = 0; a < total - 1; a++)
+    //{
+        //printf("Element \n");
+    //    int temp_1 = temp[a];
+    //    temp[a] = key(STselect(temp[a]));
+    //}
+
+     for (a = 0; a < total; a ++)
+    {
+        printf("Element4 #%d is %d \n", a+1, temp[a]);
+    }
+
+    head = z;
+
+    for (a = 0; a < total-1; a++)
+    {
+        Item item = temp[a];
+        head = RBinsert(head, item, 0, 0, NULL);
+        if (head->red)
+            printf("red to black reset has occurred at root!!!\n");
+        head->red = 0;
+    }
+
+    //Item item = head->item;
+    //head = RBinsert(head, item, 0, 0, NULL);
+    //if (head->red)
+  //printf("red to black reset has occurred at root!!!\n");
+//head->red = 0;
+
+    return temp;
+}
+
+int return_subtree()
+{
+    return head->N;
+}
+
+
 void removeDead(int * tomb, int * alive)
 {
 

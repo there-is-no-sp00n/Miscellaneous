@@ -55,4 +55,11 @@ int getRecycled();  // Number of elements available from last removeDead()
 
 void removeDead(int* tomb, int* alive);  // Rebuild tree and put tombstoned elements in recycling list.
 
+void rearrange(int * tomb, int i);
+
+int * return_live(int * tomb, int i, int tree);
+
+int return_subtree();
+
+
 #endif
