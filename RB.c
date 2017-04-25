@@ -482,6 +482,8 @@ int * return_live(int * tomb, int i, int tree)
 
     int a,b;
 
+    printf("\n after filling up temp \n");
+
     for (a = 0; a < total; a++) //all the values go into the temp
     {
         //printf("Element \n");
@@ -494,9 +496,10 @@ int * return_live(int * tomb, int i, int tree)
         printf("Element1 #%d is %d \n", a+1, temp[a]);
     }
 
-    printf("\n after filling up temp \n");
 
    // return 1;
+
+   printf("\n after deciding which ones to delete \n");
 
     for(a = 0; a < total; a++)
     {
@@ -520,11 +523,11 @@ int * return_live(int * tomb, int i, int tree)
         printf("Element2 #%d is %d \n", a+1, temp[a]);
     }
 
-    printf("\n after deciding which ones to delete \n");
+    printf("\n after reverse sorting \n");
 
     for (a = 0; a < total; a++)  //sort it
     {
-        for (b = 0; b < total - a; b++)
+        for (b = 0; b < total - a - 1; b++)
         {
             if (temp[b] < temp[b+1])
             {
@@ -537,33 +540,17 @@ int * return_live(int * tomb, int i, int tree)
 
     }
 
-    printf("\n after reverse sorting \n");
 
-    //printf("TOTAL #%d  I %d  TREE %d\n", total, i, tree);
 
-    temp = realloc(temp, (total - 1) * sizeof(int)); //make the array the right size
-
-    b = 0;
-  //  while(temp[b] != 0)
-  //  {
-
-  //  }
-
-    for (a = 0; a < total-1; a ++)
+    for (a = 0; a < total; a ++)
     {
         printf("Element3 #%d is %d \n", a+1, temp[a]);
     }
 
     printf("\n after reallocating \n");
 
-    //return 1;
+    //temp = realloc(temp, (total - 1) * sizeof(int)); //make the array the right size
 
-    //for (a = 0; a < total - 1; a++)
-    //{
-        //printf("Element \n");
-    //    int temp_1 = temp[a];
-    //    temp[a] = key(STselect(temp[a]));
-    //}
 
      for (a = 0; a < total; a ++)
     {
@@ -572,20 +559,19 @@ int * return_live(int * tomb, int i, int tree)
 
     head = z;
 
-    for (a = 0; a < total-1; a++)
+    for (a = 0; a < total; a++)
     {
         Item item = temp[a];
-        head = RBinsert(head, item, 0, 0, NULL);
-        if (head->red)
-            printf("red to black reset has occurred at root!!!\n");
-        head->red = 0;
+        if (item != 0)
+        {
+            head = RBinsert(head, item, 0, 0, NULL);
+            if (head->red)
+                printf("red to black reset has occurred at root!!!\n");
+            head->red = 0;
+        }
+
     }
 
-    //Item item = head->item;
-    //head = RBinsert(head, item, 0, 0, NULL);
-    //if (head->red)
-  //printf("red to black reset has occurred at root!!!\n");
-//head->red = 0;
 
     return temp;
 }
