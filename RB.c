@@ -454,19 +454,19 @@ int getDead(int i)
 
 void rearrange(int * tomb, int i)
 {
-    link temp = head;
+    //link temp = head;
     //int tomb_size = sizeof(tomb)/4;
     //printf("T Size: %d    Value %d\n", i, tomb[0]);
     //int rank_temp = STselect()
-    int a;
+    //int a;
 
-    for (a = 0; a < i; a++)
-    {
-        int key_temp = selectR(temp, tomb[a]);    //have the key here from the rank of tombstone element
+    //for (a = 0; a < i; a++)
+    //{
+    //    int key_temp = selectR(temp, tomb[a]);    //have the key here from the rank of tombstone element
         //rank_temp = invSelectR(temp,rank_temp);
         //for
 
-    }
+    //}
 
     //Item item = head->item;
     //head = RBinsert(head, item, 0, 0, NULL);
@@ -482,7 +482,7 @@ int * return_live(int * tomb, int i, int tree)
 
     int a,b;
 
-    printf("\n after filling up temp \n");
+    //printf("\n after filling up temp \n");
 
     for (a = 0; a < total; a++) //all the values go into the temp
     {
@@ -491,15 +491,15 @@ int * return_live(int * tomb, int i, int tree)
         temp[a] = key(STselect(a+1));
     }
 
-    for (a = 0; a < total; a ++)
-    {
-        printf("Element1 #%d is %d \n", a+1, temp[a]);
-    }
+   // for (a = 0; a < total; a ++)
+   // {
+   //     printf("Element1 #%d is %d \n", a+1, temp[a]);
+   // }
 
 
    // return 1;
 
-   printf("\n after deciding which ones to delete \n");
+//   printf("\n after deciding which ones to delete \n");
 
     for(a = 0; a < total; a++)
     {
@@ -518,18 +518,18 @@ int * return_live(int * tomb, int i, int tree)
         }
     }
 
-    for (a = 0; a < total; a ++)
-    {
-        printf("Element2 #%d is %d \n", a+1, temp[a]);
-    }
+//    for (a = 0; a < total; a ++)
+//    {
+//        printf("Element2 #%d is %d \n", a+1, temp[a]);
+//    }
 
-    printf("\n after reverse sorting \n");
+//    printf("\n after reverse sorting \n");
 
     for (a = 0; a < total; a++)  //sort it
     {
         for (b = 0; b < total - a - 1; b++)
         {
-            if (temp[b] < temp[b+1])
+            if (temp[b] > temp[b+1])
             {
                 int temp_a = temp[b+1];
                 temp[b+1] = temp[b];
@@ -542,20 +542,20 @@ int * return_live(int * tomb, int i, int tree)
 
 
 
-    for (a = 0; a < total; a ++)
-    {
-        printf("Element3 #%d is %d \n", a+1, temp[a]);
-    }
+ //   for (a = 0; a < total; a ++)
+ //   {
+ //       printf("Element3 #%d is %d \n", a+1, temp[a]);
+ //   }
 
-    printf("\n after reallocating \n");
+ //   printf("\n after reallocating \n");
 
     //temp = realloc(temp, (total - 1) * sizeof(int)); //make the array the right size
 
 
-     for (a = 0; a < total; a ++)
-    {
-        printf("Element4 #%d is %d \n", a+1, temp[a]);
-    }
+ //    for (a = 0; a < total; a ++)
+ //   {
+ //       printf("Element4 #%d is %d \n", a+1, temp[a]);
+ //   }
 
     head = z;
 
@@ -565,8 +565,8 @@ int * return_live(int * tomb, int i, int tree)
         if (item != 0)
         {
             head = RBinsert(head, item, 0, 0, NULL);
-            if (head->red)
-                printf("red to black reset has occurred at root!!!\n");
+            //if (head->red)
+            //    printf("red to black reset has occurred at root!!!\n");
             head->red = 0;
         }
 

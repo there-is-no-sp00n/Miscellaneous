@@ -40,12 +40,12 @@ while (op)
           tombstone[i - 1] = key(STselect(rank));
       }
 
-      int j = 0;
-      while(j < i)//(sizeof(tombstone)/4) )
-      {
-          printf("%d \n", tombstone[j]);
-          j++;
-      }
+      //int j = 0;
+      //while(j < i)//(sizeof(tombstone)/4) )
+      //{
+      //    printf("%d \n", tombstone[j]);
+      //    j++;
+      //}
 
       live = return_live(tombstone, i, subtree);
       //counter ++;
