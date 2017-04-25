@@ -7,6 +7,7 @@ int main()
 {
 int op,key,rank,i;
 
+int counter = 0;
 i =0;
 
 int *tombstone;
@@ -47,6 +48,7 @@ while (op)
       }
 
       live = return_live(tombstone, i, subtree);
+      //counter ++;
       //rearrange(tombstone, i);
     //  STdelete(key);
       break;
@@ -65,37 +67,27 @@ while (op)
       printf("4 %d\n",rank);
       if (rank<1 || rank>getLive(i))
         printf("rank %d range error\n",rank);
-    //  else if (rank != 0 || rank <= getLive(i))
-    //  {
-    //      int a = 0;
-   //       for(a = 0; a < i; a++)
-   //       {
-    //          if (tombstone[a] == rank)
-   //           {
-   //               printf("The number with rank %d has been tombstoned! \n", rank);
-   //               a = 0;
-   //               break;
-   //           }
-   //       }
 
-          //if(a)
         else
             {
                 printf("rank %d has key %d\n",rank,key(STselect(rank)));
                 //break;
             }
-      //}
 
       break;
-   // case 5:
-   //   printf("5\n");
-   //   printf("Live %d Dead %d Recycled %d\n",
-   //     getLive(i),getDead(i),getRecycled());
-   //   break;
+    case 5:
+      printf("5\n");
+      printf("Live %d Dead %d Recycled %d\n", getLive(i), getDead(i), getRecycled(counter));
+      break;
     case 6:
       printf("6\n");
       if (getDead(i))
-        removeDead(tombstone, live);
+      {
+          recycled = removeDead(tombstone, i);
+          counter = i;
+          i = 0;
+      }
+
       break;
     case 7:
       printf("7\n");

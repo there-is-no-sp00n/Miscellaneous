@@ -51,9 +51,9 @@ int getLive(int i);  // Number of nodes in tree with active keys.
 
 int getDead(int i);  // Number of nodes in tree with tombstone set.
 
-int getRecycled();  // Number of elements available from last removeDead()
+int getRecycled(int counter);  // Number of elements available from last removeDead()
 
-void removeDead(int* tomb, int* alive);  // Rebuild tree and put tombstoned elements in recycling list.
+int * removeDead(int* tomb, int i);  // Rebuild tree and put tombstoned elements in recycling list.
 
 void rearrange(int * tomb, int i);
 

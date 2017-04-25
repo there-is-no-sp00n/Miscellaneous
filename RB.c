@@ -440,11 +440,11 @@ int getLive(int i)
 {
     int total = head->N;
 
-    int total_live = total - i;
+    //int total_live = total - i;
 
-    printf("Total: %d Total Live: %d \n", total, total_live);
+    //printf("Total: %d Total Live: %d \n", total, total_live);
 
-    return total_live;
+    return total;
 }
 
 int getDead(int i)
@@ -458,7 +458,7 @@ void rearrange(int * tomb, int i)
     //int tomb_size = sizeof(tomb)/4;
     //printf("T Size: %d    Value %d\n", i, tomb[0]);
     //int rank_temp = STselect()
-    int a,b;
+    int a;
 
     for (a = 0; a < i; a++)
     {
@@ -582,7 +582,20 @@ int return_subtree()
 }
 
 
-void removeDead(int * tomb, int * alive)
+int * removeDead(int * tomb, int i)
 {
+    int b;
+    int *recycled = (int*)calloc(i, sizeof(int));
 
+    for(b = 0; b < i; b ++)
+    {
+        recycled[b] = tomb[b];
+    }
+
+    return recycled;
+}
+
+int getRecycled(int counter)
+{
+    return counter;
 }
