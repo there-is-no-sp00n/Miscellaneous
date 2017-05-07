@@ -15,6 +15,7 @@ struct used
         int asc;
         int found;
         int asso;
+        char name[25];
     };
 
 void table_fill(int ** two_d, struct connections all[], int *prim, int n, int m);
@@ -228,6 +229,18 @@ int main()
     {
         u_l[i].asc = prim[i];
         u_l[i].found = 0;
+        for(j = 0; j <m; j++)
+        {
+            if(u_l[i].asc == all[j].name_asc)
+            {
+                strcpy(u_l[i].name, all[j].name);
+            }
+
+            if(u_l[i].asc == all[j].points_to_asc)
+            {
+                strcpy(u_l[i].name, all[j].points_to);
+            }
+        }
     }
 
     scc_print(two_d, u_l, all, prim, n,m, 0,1);
@@ -236,7 +249,7 @@ int main()
     int p;
     for(p=0;p<n;p++)
     {
-        printf("used[%d]  =  %d    Found = %d     Asso = %d\n",p,u_l[p].asc, u_l[p].found, u_l[p].asso);
+        printf("used[%d]  =  %d   name = %s       Found = %d     Asso = %d\n", p, u_l[p].asc, u_l[p].name, u_l[p].found, u_l[p].asso);
     }
 
     int *keep = (int*)calloc(n,sizeof(int));
@@ -370,7 +383,7 @@ void final_scc(struct used u_l[], int n, int *keep, int i, int scc_num)
     {
         printf("SCC %d: \n", scc_num);
         keep[i] = 1;
-        printf("%d \n",u_l[i].asc);
+        printf("%s \n",u_l[i].name);
         if(u_l[i].asso !=0)
         {
             //target = u_l[i].asso;
