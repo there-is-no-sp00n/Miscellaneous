@@ -68,7 +68,7 @@ int main()
 
     }
 
-    printf("1\n");
+    //printf("1\n");
 
 
     int *prim = (int*)calloc(n, sizeof(int));
@@ -109,14 +109,14 @@ int main()
         }
     }
 
-     for(i = 0; i < n; i++)
-    {
-        printf("i = %d, prim = %d \n", i, prim[i]);
-    }
+   //  for(i = 0; i < n; i++)
+   // {
+   //     printf("i = %d, prim = %d \n", i, prim[i]);
+   // }
 
    // int *left = (int*)calloc(zero, sizeof(int));
 
-    printf("2\n");
+   // printf("2\n");
     for(i =0; i < m; i++)
     {
         j = 0;
@@ -143,13 +143,13 @@ int main()
         }
     }
 
-    printf("3\n");
+    //printf("3\n");
 
 
-    for(i = 0; i < n; i++)
-    {
-        printf("i = %d, prim = %d \n", i, prim[i]);
-    }
+    //for(i = 0; i < n; i++)
+   // {
+   //     printf("i = %d, prim = %d \n", i, prim[i]);
+  //  }
 
     for(i =0; i < m; i++)
     {
@@ -177,24 +177,24 @@ int main()
         }
     }
 
-    printf("4\n");
+   // printf("4\n");
 
-    for(i = 0; i < n; i++)
-    {
-        printf("i = %d, prim = %d \n", i, prim[i]);
-    }
-
-
+  //  for(i = 0; i < n; i++)
+  //  {
+  //      printf("i = %d, prim = %d \n", i, prim[i]);
+  //  }
 
 
-    for(i = 0; i < m; i++)
-    {
-        printf("i: %d, Name: %s, Points to: %s, Head_Ascii: %d, Tail Ascii: %d \n", i+1, all[i].name, all[i].points_to, all[i].name_asc, all[i].points_to_asc);
-    }
+
+
+  //  for(i = 0; i < m; i++)
+  //  {
+  //      printf("i: %d, Name: %s, Points to: %s, Head_Ascii: %d, Tail Ascii: %d \n", i+1, all[i].name, all[i].points_to, all[i].name_asc, all[i].points_to_asc);
+  //  }
 
     //int sq = n++;
 
-    printf("5\n");
+  //  printf("5\n");
 
     int **two_d = (int**)calloc(n+1, sizeof(int*));
     for(i = 0; i < n+1; i++)
@@ -202,11 +202,11 @@ int main()
         two_d[i] = (int*)calloc(n+1, sizeof(int));
     }
 
-    printf("6\n");
+  //  printf("6\n");
 
-    print2d(two_d, n+1, n+1);
+  //  print2d(two_d, n+1, n+1);
 
-    printf("gg1\n");
+  //  printf("gg1\n");
 
 
 
@@ -215,8 +215,8 @@ int main()
 
 
 
-    print2d(two_d, n+1, n+1);
-    printf("gg\n");
+  //  print2d(two_d, n+1, n+1);
+  //  printf("gg\n");
 
 
 
@@ -244,13 +244,13 @@ int main()
     }
 
     scc_print(two_d, u_l, all, prim, n,m, 0,1);
-    print2d(two_d, n+1, n+1);
+   // print2d(two_d, n+1, n+1);
 
-    int p;
-    for(p=0;p<n;p++)
-    {
-        printf("used[%d]  =  %d   name = %s       Found = %d     Asso = %d\n", p, u_l[p].asc, u_l[p].name, u_l[p].found, u_l[p].asso);
-    }
+  //  int p;
+  //  for(p=0;p<n;p++)
+  //  {
+  //      printf("used[%d]  =  %d   name = %s       Found = %d     Asso = %d\n", p, u_l[p].asc, u_l[p].name, u_l[p].found, u_l[p].asso);
+  //  }
 
     int *keep = (int*)calloc(n,sizeof(int));
 
@@ -282,7 +282,7 @@ int main()
 void table_fill(int ** two_d, struct connections all[], int *prim, int n, int m)
 {
     int i,j;
-    printf("7\n");
+    //printf("7\n");
     for(i = 0; i < n; i++)
     {
         two_d[i+1][0] = prim[i]; //vertical initial
@@ -318,10 +318,10 @@ void scc_print(int **two_d,struct used u_l[], struct connections all[], int *pri
 {
     //int flag;
 
-    for(i=0;i<n;i++)
-    {
-        printf("used[%d]  =  %d    Found = %d\n",i,u_l[i].asc, u_l[i].found);
-    }
+ //   for(i=0;i<n;i++)
+ //   {
+ //       printf("used[%d]  =  %d    Found = %d\n",i,u_l[i].asc, u_l[i].found);
+ //   }
 
     for(j = j; j <= n; j++) //going across horizontally start comparing @ [0][1]
     {
@@ -333,7 +333,7 @@ void scc_print(int **two_d,struct used u_l[], struct connections all[], int *pri
             //printf("111\n");
             if(two_d[i][j] == 1)
             {
-                printf("Found a 1 @ [%d][%d]\n", i,j);
+               // printf("Found a 1 @ [%d][%d]\n", i,j);
                 //flag  = 1;
                 if(u_l[j-1].found == 0)
                 {
@@ -363,11 +363,11 @@ void scc_print(int **two_d,struct used u_l[], struct connections all[], int *pri
 
     }
 
-    int p;
-    for(p=0;p<n;p++)
-    {
-        printf("used[%d]  =  %d    Found = %d     Asso = %d\n",p,u_l[p].asc, u_l[p].found, u_l[p].asso);
-    }
+//    int p;
+ //   for(p=0;p<n;p++)
+  //  {
+  //      printf("used[%d]  =  %d    Found = %d     Asso = %d\n",p,u_l[p].asc, u_l[p].found, u_l[p].asso);
+  //  }
 
 
 }
@@ -408,8 +408,8 @@ void print2d(int ** array, int row, int col)
 {
     int i,j;
 
-    printf("8");
-    printf("\n");
+    //printf("8");
+    //printf("\n");
 
     for (i = 0; i<row;i++)
     {
