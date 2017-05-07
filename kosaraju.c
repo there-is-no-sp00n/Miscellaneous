@@ -10,9 +10,20 @@ struct connections
         int points_to_asc;
     };
 
+struct used
+    {
+        int asc;
+        int found;
+        int asso;
+    };
+
 void table_fill(int ** two_d, struct connections all[], int *prim, int n, int m);
 
 void print2d(int ** array, int row, int col);
+
+void scc_print(int ** two_d, struct used u_l[], struct connections all[], int *prim, int n, int m, int i, int j);
+
+void final_scc(struct used u_l[], int n, int *keep);
 
 int main()
 {
@@ -102,7 +113,7 @@ int main()
         printf("i = %d, prim = %d \n", i, prim[i]);
     }
 
-    int *left = (int*)calloc(zero, sizeof(int));
+   // int *left = (int*)calloc(zero, sizeof(int));
 
     printf("2\n");
     for(i =0; i < m; i++)
@@ -206,6 +217,32 @@ int main()
     print2d(two_d, n+1, n+1);
     printf("gg\n");
 
+
+
+
+    struct used *u_l = (struct used*)calloc(n, sizeof(struct used));
+
+
+
+    for (i=0; i <n; i++)
+    {
+        u_l[i].asc = prim[i];
+        u_l[i].found = 0;
+    }
+
+    scc_print(two_d, u_l, all, prim, n,m, 0,1);
+    print2d(two_d, n+1, n+1);
+
+    int p;
+    for(p=0;p<n;p++)
+    {
+        printf("used[%d]  =  %d    Found = %d     Asso = %d\n",p,u_l[p].asc, u_l[p].found, u_l[p].asso);
+    }
+
+    int *keep = (int*)calloc(n,sizeof(int));
+
+    final_scc(u_l, n, keep);
+
     return 0;
 }
 
@@ -244,6 +281,78 @@ void table_fill(int ** two_d, struct connections all[], int *prim, int n, int m)
 
 }
 
+void scc_print(int **two_d,struct used u_l[], struct connections all[], int *prim, int n, int m, int i, int j)
+{
+    //int flag;
+
+    for(i=0;i<n;i++)
+    {
+        printf("used[%d]  =  %d    Found = %d\n",i,u_l[i].asc, u_l[i].found);
+    }
+
+    for(j = j; j <= n; j++) //going across horizontally start comparing @ [0][1]
+    {
+        //printf("11\n");
+        //flag = 0;
+        //u_l[j-1].found = 1;
+        for(i = 1; i <= n; i++)//going down that j value [1][1]
+        {
+            //printf("111\n");
+            if(two_d[i][j] == 1)
+            {
+                printf("Found a 1 @ [%d][%d]\n", i,j);
+                //flag  = 1;
+                if(u_l[j-1].found == 0)
+                {
+                    //flag = 1;
+                    if(u_l[i-1].found != 1)
+                    {
+                        u_l[j-1].asso = u_l[i-1].asc;
+                        u_l[j-1].found = 1;
+                        scc_print(two_d, u_l, all, prim, n,m, i,i);
+
+
+                    }
+                    //break;
+                }
+
+                //break;
+
+
+            }
+
+            else if (i == n)
+            {
+                u_l[j-1].found = 1;
+            }
+
+        }
+
+    }
+
+    int p;
+    for(p=0;p<n;p++)
+    {
+        printf("used[%d]  =  %d    Found = %d     Asso = %d\n",p,u_l[p].asc, u_l[p].found, u_l[p].asso);
+    }
+
+
+}
+
+void final_scc(struct used u_l[], int n, int *keep)
+{
+    int scc_num = 1;
+
+    int i;
+
+    //printf("UL SIZE: %d\n", sizeof(u_l)/sizeof(struct used));
+
+    for(i = 0; i < n; i++)
+    {
+
+    }
+}
+
 void print2d(int ** array, int row, int col)
 {
     int i,j;
@@ -255,7 +364,7 @@ void print2d(int ** array, int row, int col)
     {
         for(j=0;j<col;j++)
         {
-            printf("%15d", array[i][j]);
+            printf("%6d", array[i][j]);
         }
         puts("");
     }
