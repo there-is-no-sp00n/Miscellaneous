@@ -23,7 +23,7 @@ void print2d(int ** array, int row, int col);
 
 void scc_print(int ** two_d, struct used u_l[], struct connections all[], int *prim, int n, int m, int i, int j);
 
-void final_scc(struct used u_l[], int n, int *keep);
+void final_scc(struct used u_l[], int n, int *keep, int i, int scc_num);
 
 int main()
 {
@@ -241,7 +241,27 @@ int main()
 
     int *keep = (int*)calloc(n,sizeof(int));
 
-    final_scc(u_l, n, keep);
+    int scc_num = 1;
+
+    for(i=0;i<n;i++)
+    {
+        if(keep[i] == 0)
+        {
+            if(u_l[i].asso ==0)
+            {
+                final_scc(u_l, n, keep, i, scc_num);
+                scc_num++;
+            }
+            else
+            {
+                final_scc(u_l, n, keep, i, scc_num);
+                scc_num++;
+            }
+
+        }
+    }
+
+
 
     return 0;
 }
@@ -339,18 +359,36 @@ void scc_print(int **two_d,struct used u_l[], struct connections all[], int *pri
 
 }
 
-void final_scc(struct used u_l[], int n, int *keep)
+void final_scc(struct used u_l[], int n, int *keep, int i, int scc_num)
 {
-    int scc_num = 1;
-
-    int i;
+    int j;
 
     //printf("UL SIZE: %d\n", sizeof(u_l)/sizeof(struct used));
 
-    for(i = 0; i < n; i++)
-    {
 
+    if(keep[i] == 0)
+    {
+        printf("SCC %d: \n", scc_num);
+        keep[i] = 1;
+        printf("%d \n",u_l[i].asc);
+        if(u_l[i].asso !=0)
+        {
+            //target = u_l[i].asso;
+            for(j = 0; j < n; j++)
+            {
+                if(u_l[j].asc == u_l[i].asso)
+                {
+                    final_scc(u_l, n, keep, j, scc_num);
+                }
+            }
+            //final_scc(u_l, n, keep, target, scc_num);
+        }
+        else
+        {
+            //scc_num++;
+        }
     }
+
 }
 
 void print2d(int ** array, int row, int col)
