@@ -1,16 +1,8 @@
 #include <iostream>
 #include <string>
-#include <sys/time.h>
 
 using namespace std;
 
-struct event
-{
-	string eventName;
-	timeOfDay eventTime;
-	appDate eventDate;
-	bool isUrgent;
-};
 struct timeOfDay 
 {
 	short Hour;
@@ -27,6 +19,17 @@ struct appDate
 	
 
 };
+
+struct event
+{
+	string eventName;
+	timeOfDay eventTime;
+	appDate eventDate;
+	bool isUrgent;
+};
+
+
+
 
 int main()
 {
